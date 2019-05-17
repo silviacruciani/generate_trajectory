@@ -24,6 +24,9 @@ public:
 
     }
 
+    /**
+        service callback
+    */
     bool generateTrajectory(generate_trajectory::GenerateTrajectoryRequest &req, generate_trajectory::GenerateTrajectoryResponse &res){
         //update the trajectory generator with the new values
         ROS_INFO_STREAM("Received waypoints of size: "<<req.waypoints.size());
@@ -31,11 +34,7 @@ public:
         //initialize the joint trajectory msgs
         trajectory_msgs::JointTrajectory input_traj;
         input_traj.points=req.waypoints;
-        // double time=0.0;
-        // for(int i=0; i<input_traj.points.size(); i++){
-        //     input_traj.points[i].time_from_start=ros::Duration(time);
-        //     time+=1.0;
-        // }
+
         ROS_INFO("preparing to generate trajectory");
         //generate the trajectory
         trajectory_msgs::JointTrajectory ouptput_traj=joint_traj_gen_->generate(input_traj);
