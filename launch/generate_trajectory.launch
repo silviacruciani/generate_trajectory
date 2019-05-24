@@ -1,0 +1,8 @@
+<launch>
+    <arg name="debug" default="false"/>
+    <node if="$(arg debug)" pkg="generate_trajectory" type="trajectory_generator_server" name="traj_gen" output="screen" launch-prefix="xterm -e gdb --args">
+    </node>
+
+  <node unless="$(arg debug)" pkg="generate_trajectory" type="trajectory_generator_server" name="traj_gen" output="screen">
+  </node>
+</launch>
