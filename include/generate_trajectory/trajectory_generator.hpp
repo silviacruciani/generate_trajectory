@@ -33,7 +33,7 @@ namespace generate_trajectory{
             sets a new number of waypoints in the trajectory generator
             @param size the number of waypoints
         */
-        void setWaypointsNumber(uint size);
+        void setJointsNumber(uint size);
 
         /**
             sets the velocity and acceleration limits in the trajectory generator
@@ -44,7 +44,7 @@ namespace generate_trajectory{
     private:
         std::shared_ptr<trajectory::TrajectoryGenerator> traj_gen_;
         double max_acc_, max_vel_;
-        uint waypoints_size_;
+        uint joint_num_;
         
     };
 }

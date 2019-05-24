@@ -13,11 +13,11 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 def main():
     #make three joint trajectory points
     p1 = JointTrajectoryPoint()
-    p1.positions = [0.0, 0.0, 0.0]
+    p1.positions = [0.0, 0.0, 0.0, 0.0]
     p2 = JointTrajectoryPoint()
-    p2.positions = [1.0, 0.5, 0.7]
+    p2.positions = [1.0, 0.5, 0.7, 0.1]
     p3 = JointTrajectoryPoint()
-    p3.positions = [2.0, 1.0, 1.5]
+    p3.positions = [2.0, 1.0, 1.5, 0.1]
 
     waypoints = [p1, p2, p3]
 
@@ -25,6 +25,7 @@ def main():
     req.waypoints = waypoints
     req.max_vel = 1.0
     req.max_acc = 0.1
+    req.joint_num = 4
 
     rospy.wait_for_service('/generate_trajectory')
 

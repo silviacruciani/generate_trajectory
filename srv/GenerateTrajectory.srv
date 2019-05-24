@@ -1,5 +1,6 @@
 trajectory_msgs/JointTrajectoryPoint[] waypoints
 float64 max_vel
 float64 max_acc
+int64 joint_num
 ---
 trajectory_msgs/JointTrajectory trajectory

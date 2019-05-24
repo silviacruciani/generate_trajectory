@@ -10,7 +10,7 @@
 using namespace generate_trajectory;
 
 JointTrajectoryGenerator::JointTrajectoryGenerator(double max_vel, double max_acc, uint size){
-    waypoints_size_=size;
+    joint_num_ =size;
     max_vel_=max_vel;
     max_acc_=max_acc;
     traj_gen_=std::shared_ptr<trajectory::TrajectoryGenerator>(new trajectory::TrajectoryGenerator(max_vel, max_acc, size)); 
@@ -20,15 +20,15 @@ JointTrajectoryGenerator::~JointTrajectoryGenerator(){
 
 }
 
-void JointTrajectoryGenerator::setWaypointsNumber(uint size){
-    waypoints_size_=size;
-    traj_gen_=std::shared_ptr<trajectory::TrajectoryGenerator>(new trajectory::TrajectoryGenerator(max_vel_, max_acc_, waypoints_size_));
+void JointTrajectoryGenerator::setJointsNumber(uint size){
+    joint_num_=size;
+    traj_gen_=std::shared_ptr<trajectory::TrajectoryGenerator>(new trajectory::TrajectoryGenerator(max_vel_, max_acc_, joint_num_));
 }
 
 void JointTrajectoryGenerator::setLimits(double max_vel, double max_acc){
     max_acc_=max_acc;
     max_vel_=max_vel;
-    traj_gen_=std::shared_ptr<trajectory::TrajectoryGenerator>(new trajectory::TrajectoryGenerator(max_vel_, max_acc_, waypoints_size_)); 
+    traj_gen_=std::shared_ptr<trajectory::TrajectoryGenerator>(new trajectory::TrajectoryGenerator(max_vel_, max_acc_, joint_num_)); 
 
 }
 

@@ -30,7 +30,8 @@ public:
     bool generateTrajectory(generate_trajectory::GenerateTrajectoryRequest &req, generate_trajectory::GenerateTrajectoryResponse &res){
         //update the trajectory generator with the new values
         ROS_INFO_STREAM("Received waypoints of size: "<<req.waypoints.size());
-        initializeTrajectoryGenerator(req.max_vel, req.max_acc, req.waypoints.size());
+        initializeTrajectoryGenerator(req.max_vel, req.max_acc, req.joint_num);
+        // initializeTrajectoryGenerator(req.max_vel, req.max_acc, req.waypoints.size());
         //initialize the joint trajectory msgs
         trajectory_msgs::JointTrajectory input_traj;
         input_traj.points=req.waypoints;
@@ -48,8 +49,9 @@ public:
     */
     void initializeTrajectoryGenerator(double max_vel, double max_acc, uint size){
         if(size!=size_){
+            ROS_INFO_STREAM("changing generator size to: "<<size);
             size_=size;
-            joint_traj_gen_->setWaypointsNumber(size_);
+            joint_traj_gen_->setJointsNumber(size_);
         }
         if(fabs(max_vel-max_vel_)>EPSILON || fabs(max_acc-max_acc_)>EPSILON){
             max_vel_=max_vel;
